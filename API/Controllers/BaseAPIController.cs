@@ -7,6 +7,6 @@ namespace API.Controllers
 
     public class BaseAPIController : ControllerBase
     {
-        
+       int Chuck = 0; 
     }
 }
