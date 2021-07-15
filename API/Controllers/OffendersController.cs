@@ -22,19 +22,6 @@ namespace API.Controllers
                 var records = csv.GetRecords<OffenderModel>().ToList();
                 return records;
             }
-
-
-
-
-            //  return Enumerable.Range(1, 5).Select(index => new OffenderModel
-            //  {
-            //      MKE = "Test",   //DateTime.Now.AddDays(index),
-            //      ORI = "Test 2", //rng.Next(-20, 55),
-            //      NIC = "Test 3", 
-            //      NAM = "Monarch, Chuck", 
-            //      SEX = "M" 
-            //  })
-            //  .ToList();
         }
     }
 }
