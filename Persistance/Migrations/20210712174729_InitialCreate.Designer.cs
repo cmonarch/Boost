@@ -18,33 +18,63 @@ namespace Persistance.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.1");
 
-            modelBuilder.Entity("Domain.Activity", b =>
+            modelBuilder.Entity("Domain.Offender", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Category")
+                    b.Property<string>("ORI")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("City")
+                    b.Property<string>("NIC")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<string>("NAM")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("SEX")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("RAC")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Venue")
+                    b.Property<string>("ETN")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("POB")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DOB")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ORD")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ERD")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SXP")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("HGT")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("WGT")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EYE")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("HAI")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FBI")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Activities");
+                    b.ToTable("Offenders");
                 });
 #pragma warning restore 612, 618
         }
