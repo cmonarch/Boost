@@ -20,71 +20,78 @@ namespace API.Controllers
             _context = context;
         }
 
+        //
+        // In Postman this is http://localhost:5000/api/offenders
+        //
         [HttpGet]
         public async Task<ActionResult<List<Offender>>> GetOffenders()
         {
            return await _context.Offenders.ToListAsync(); 
         }
 
-//        [HttpGet("drop")]
-      //  public async Task<ActionResult<List<Offender>>> LoadOffenders()
-      //  {
-  //          string path = @"D:\WatchSystems\CSVHelperExample-master\BoostTest_10rows.csv";
+        //
+        // In Postman this is http://localhost:5000/api/offenders/drop
+        //
+        [HttpGet("drop")]
+        public async void DropDatabase()
+        {
+           await _context.Database.EnsureDeletedAsync();
+        }
 
-    //       _context.Database.Migrate();
-       //    await LoadSQLite.Load(_context, path);
-       //    return await _context.Offenders.ToListAsync(); 
-//           return null;
-     //   }
-
+        //
+        // In Postman this is http://localhost:5000/api/offenders/load
+        //
         [HttpGet("load")]
         public async Task<ActionResult<List<Offender>>> LoadOffenders()
         {
-            string path = @"D:\WatchSystems\CSVHelperExample-master\BoostTest_10rows.csv";
+//            string path = @"D:\UDEMY\test1\Data\BoostTestSetTiny.csv";
+            string path = @"D:\UDEMY\test1\Data\BoostTestSetSmall.csv";
+//            string path = @"D:\UDEMY\test1\Data\BoostTestSetFull.csv";
 
            _context.Database.Migrate();
-           await LoadSQLite.Load(_context, path);
-           return await _context.Offenders.ToListAsync(); 
-//           return null;
+           await LoadSQLite.Load(_context, path);           
+           return await _context.Offenders.ToListAsync();   // display what we loaded
         }
 
+        //
+        // In Postman this is http://localhost:5000/api/offenders/offender/[guid goes here]
+        //
         [HttpGet("offender/{Id}")]
         public async Task<ActionResult<Offender>> GetOffender(Guid Id)
         {
             return await _context.Offenders.FindAsync(Id);
         }
 
+        //
+        // In Postman this is http://localhost:5000/api/offenders/[10, 100, 1000, 10000, 100000]
+        //
         [HttpGet("{filecount}")]
         public List<OffenderModel> Get(int filecount)
         {
             string path;
             if(filecount == 10)
             {
-              path = @"D:\WatchSystems\CSVHelperExample-master\BoostTest_10rows.csv";
+              path = @"D:\UDEMY\test1\Data\BoostTest_10rows.csv";
             }
             else if(filecount == 100)
             {
-              path = @"D:\WatchSystems\CSVHelperExample-master\BoostTest_100rows.csv";
+              path = @"D:\UDEMY\test1\Data\BoostTest_100rows.csv";
             }
             else if(filecount == 1000)
             {
-              path = @"D:\WatchSystems\CSVHelperExample-master\BoostTest_1000rows.csv";
+              path = @"D:\UDEMY\test1\Data\BoostTest_1000rows.csv";
             }
             else if(filecount == 10000)
             {
-              path = @"D:\WatchSystems\CSVHelperExample-master\BoostTest_10000rows.csv";
+              path = @"D:\UDEMY\test1\Data\BoostTest_10000rows.csv";
             }
             else if(filecount == 100000)
             {
-              path = @"D:\WatchSystems\CSVHelperExample-master\BoostTest_100000rows.csv";
+              path = @"D:\UDEMY\test1\Data\BoostTest_100000rows.csv";
             }
-//            else if(filecount == 1000000)
-//            {
-//              path = @"D:\WatchSystems\CSVHelperExample-master\BoostTest_1000000rows.csv";
-//            }
             else
             {
-              path = @"D:\WatchSystems\CSVHelperExample-master\BoostTest_10rows.csv";
+              path = @"D:\UDEMY\test1\Data\BoostTest_10rows.csv";
             }
 
             using (var reader = new StreamReader(path))
